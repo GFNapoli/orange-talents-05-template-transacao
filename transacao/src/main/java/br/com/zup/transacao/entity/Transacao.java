@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import br.com.zup.transacao.response.CartaoResponse;
+import br.com.zup.transacao.response.EstabelecimentoResponse;
+
 @Entity
 public class Transacao {
 
@@ -52,6 +55,14 @@ public class Transacao {
 
 	public LocalDateTime getEfetivadaEm() {
 		return efetivadaEm;
+	}
+
+	public EstabelecimentoResponse converteEstabelecimento() {
+		return new EstabelecimentoResponse(this.estabelecimento.getNome(), this.estabelecimento.getCidade(), this.estabelecimento.getEndereco());
+	}
+
+	public CartaoResponse converterCartao() {
+		return new CartaoResponse(this.cartao.getId(), this.cartao.getEmail());
 	}
 	
 	
